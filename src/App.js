@@ -1,5 +1,6 @@
 import React from 'react'
+import Header from './components/layout/Header'
 
-const App = () => <h1>Todoist</h1>
+const App = () => <Header />
 
 export default App
