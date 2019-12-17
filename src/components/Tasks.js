@@ -1,8 +1,9 @@
 import React from 'react'
+import { useTasks } from '../hooks'
 import Checkbox from './Checkbox'
 
 const Tasks = () => {
-  const tasks = []
+  const { tasks } = useTasks('1')
 
   const projectName = ''
   return (
@@ -12,7 +13,7 @@ const Tasks = () => {
       <ul className="tasks__list">
         {tasks.map(task => (
           <li key={`${task.id}`}>
-            <Checkbox key={`${task.id}`} />
+            <Checkbox id={task.id} />
             <span>{task.task}</span>
           </li>
         ))}
