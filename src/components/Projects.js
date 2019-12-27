@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 
 import { useSelectedProjectValue, useProjectsValue } from '../context'
 
+import IndividualProject from './IndividualProject'
+
 const Projects = ({ activeValue = true }) => {
   const [active, setActive] = useState(activeValue)
   const { setSelectedProject } = useSelectedProjectValue()
@@ -29,7 +31,7 @@ const Projects = ({ activeValue = true }) => {
       onClick={() => handleClick(project)}
       onKeyDown={() => handleClick(project)}
     >
-      Project
+      <IndividualProject project={project} />
     </li>
   ))
 }

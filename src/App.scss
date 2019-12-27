@@ -1,12 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap');
+/* ==========================================================================
+   LETS BUILD TODOIST
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 
+// General Settings
 html {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 *,
-*::before,
-*::after {
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -17,6 +22,9 @@ body {
   font-family: 'Roboto', sans-serif;
   color: #202020;
   background-color: #fafafa;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ul {
@@ -24,12 +32,16 @@ ul {
   padding: 0;
 }
 
+// Variables
 $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
   rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
 $generic-bg: #db4c3f;
 
+/* Mixins
+     ============================================ */
 @mixin box-overlay() {
+  -webkit-box-shadow: $generic-box-shadow;
   box-shadow: $generic-box-shadow;
   position: absolute;
   width: 100%;
@@ -39,12 +51,20 @@ $generic-bg: #db4c3f;
 }
 
 @mixin va($va-align: center) {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 
   @if $va-align != center {
+    -webkit-box-pack: left;
+    -ms-flex-pack: left;
     justify-content: left;
   } @else {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 }
@@ -52,7 +72,6 @@ $generic-bg: #db4c3f;
 @mixin no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -116,6 +135,8 @@ $generic-bg: #db4c3f;
   }
 }
 
+/* Darkmode
+     ============================================ */
 .darkmode {
   header {
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
@@ -125,6 +146,8 @@ $generic-bg: #db4c3f;
   }
 }
 
+/* Header
+     ============================================ */
 header {
   border-bottom: solid 1px #ca2100;
   background-color: $generic-bg;
@@ -226,6 +249,8 @@ header {
   }
 }
 
+/* Sidebar
+     ============================================ */
 .sidebar {
   @include no-select();
   width: 266px;
@@ -256,10 +281,9 @@ header {
       padding: 5px 0;
       padding-left: 10px;
       padding-right: 15px;
-      width: 100%;
       display: -webkit-box;
       display: -ms-flexbox;
-      display: flex;
+      // display: flex;
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
@@ -395,6 +419,8 @@ header {
   }
 }
 
+/* Show Confirm Delete
+     ============================================ */
 .project-delete-modal {
   position: relative;
 
@@ -425,6 +451,8 @@ header {
   }
 }
 
+/* Main Content
+     ============================================ */
 .content {
   display: grid;
   -webkit-box-align: center;
@@ -435,6 +463,8 @@ header {
   margin: auto;
 }
 
+/* Tasks
+     ============================================ */
 .tasks {
   width: 656px;
   background-color: white;
@@ -501,6 +531,8 @@ header {
   }
 }
 
+/* Add Task
+     ============================================ */
 .add-task {
   &__overlay {
     background: rgba(102, 102, 102, 0.5);
@@ -610,6 +642,8 @@ header {
   margin-left: 15px;
 }
 
+/* Task Date
+     ============================================ */
 .task-date {
   @include box-overlay();
   background-color: #fff;
@@ -641,6 +675,8 @@ header {
   }
 }
 
+/* Project Overlay
+     ============================================ */
 .project-overlay {
   @include box-overlay();
   background-color: white;
@@ -661,6 +697,8 @@ header {
   }
 }
 
+/* Add Project
+     ============================================ */
 .add-project {
   padding-left: 13px;
   padding-right: 20px;
