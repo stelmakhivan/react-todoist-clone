@@ -276,18 +276,10 @@ header {
 
   &__project {
     cursor: pointer;
-
-    div:nth-child(1) {
-      padding: 5px 0;
-      padding-left: 10px;
-      padding-right: 15px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      // display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-    }
+    padding: 5px 0;
+    padding-left: 10px;
+    padding-right: 15px;
+    
 
     &-delete {
       margin-left: auto;
