@@ -1,9 +1,15 @@
 import collatedTasks from '../constants'
 
-export default selectedProject =>
+export const getTitle = (projects, projectId) =>
+  projects.find(project => project.projectId === projectId)
+
+export const getCollatedTitle = (projects, key) =>
+  projects.find(project => project.key === key)
+
+export const collatedTasksExist = selectedProject =>
   collatedTasks.find(task => task.key === selectedProject)
 
-export const generatePushId = (() => {
+export default (() => {
   const PUSH_CHARS =
     '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'
 
