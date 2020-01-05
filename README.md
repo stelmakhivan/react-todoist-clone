@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# This project is todo-like project, covered with tests and bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+
+![test coverage](https://raw.githubusercontent.com/stelmakhivan/react-todoist-clone/master/test-coverage.jpg)
 
 ## Available Scripts
 
