@@ -5,6 +5,8 @@ import { FaRegListAlt, FaRegCalendarAlt } from 'react-icons/fa'
 
 import firebase from '../firebase'
 import { useSelectedProjectValue } from '../context'
+import ProjectOverlay from './ProjectOverlay'
+import TaskDate from './TaskDate'
 
 const AddTask = ({
   showAddTaskMain,
@@ -100,8 +102,16 @@ const AddTask = ({
               </div>
             </>
           )}
-          <p>Project overlay</p>
-          <p>TaskDate</p>
+          <ProjectOverlay
+            setProject={setProject}
+            showProjectOverlay={showProjectOverlay}
+            setShowProjectOverlay={setShowProjectOverlay}
+          />
+          <TaskDate
+            setTaskDate={setTaskDate}
+            showTaskDate={showTaskDate}
+            setShowTaskDate={setShowTaskDate}
+          />
           <input
             type="text"
             className="add-task__content"
@@ -113,7 +123,11 @@ const AddTask = ({
             className="add-task__submit"
             type="button"
             data-testid="add-task"
-            onClick={addTask}
+            onClick={() =>
+              showQuickAddTask
+                ? addTask() && setShowQuickAddTask(false)
+                : addTask()
+            }
           >
             Add Task
           </button>

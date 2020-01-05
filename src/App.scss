@@ -280,7 +280,6 @@ header {
     padding: 5px 0;
     padding-left: 10px;
     padding-right: 15px;
-    
 
     &-delete {
       margin-left: auto;
@@ -681,7 +680,6 @@ header {
 
   &__list li {
     @include task-item();
-    padding: 0;
 
     div:nth-child(1) {
       width: 100%;

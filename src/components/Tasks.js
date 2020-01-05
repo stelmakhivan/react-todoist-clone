@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useTasks } from '../hooks'
-import Checkbox from './Checkbox'
 import collatedTasks from '../constants'
 import { getTitle, getCollatedTitle, collatedTasksExist } from '../helpers'
 import { useSelectedProjectValue, useProjectsValue } from '../context'
 
+import Checkbox from './Checkbox'
 import AddTask from './AddTask'
 
 const Tasks = () => {
@@ -38,7 +38,7 @@ const Tasks = () => {
       <ul className="tasks__list">
         {tasks.map(task => (
           <li key={`${task.id}`}>
-            <Checkbox id={task.id} />
+            <Checkbox id={task.id} taskDesc={task.task} />
             <span>{task.task}</span>
           </li>
         ))}
