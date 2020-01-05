@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
@@ -9,15 +10,15 @@ import ProjectOverlay from './ProjectOverlay'
 import TaskDate from './TaskDate'
 
 const AddTask = ({
-  showAddTaskMain,
-  showShouldMain,
+  showAddTaskMain = true,
+  shouldShowMain = false,
   showQuickAddTask,
   setShowQuickAddTask
 }) => {
   const [task, setTask] = useState('')
   const [taskDate, setTaskDate] = useState('')
   const [project, setProject] = useState('')
-  const [showMain, setShowMain] = useState(showShouldMain)
+  const [showMain, setShowMain] = useState(shouldShowMain)
   const [showProjectOverlay, setShowProjectOverlay] = useState(false)
   const [showTaskDate, setShowTaskDate] = useState(false)
 
@@ -67,9 +68,10 @@ const AddTask = ({
           className="add-task__shallow"
           data-testid="show-main-action"
           onClick={() => setShowMain(!showMain)}
+          onKeyDown={() => setShowMain(!showMain)}
+          tabIndex={0}
+          aria-label="Add task"
           role="button"
-          tabIndex="0"
-          onKeyPress={() => setShowMain(!showMain)}
         >
           <span className="add-task__plus">+</span>
           <span className="add-task__text">Add Task</span>
@@ -85,19 +87,21 @@ const AddTask = ({
                 <span
                   className="add-task__cancel-x"
                   data-testid="add-task-quick-cancel"
+                  aria-label="Cancel adding task"
                   onClick={() => {
                     setShowMain(false)
                     setShowProjectOverlay(false)
                     setShowQuickAddTask(false)
                   }}
-                  role="button"
-                  tabIndex="0"
-                  onKeyPress={() => {
+                  onKeyDown={() => {
                     setShowMain(false)
                     setShowProjectOverlay(false)
+                    setShowQuickAddTask(false)
                   }}
+                  tabIndex={0}
+                  role="button"
                 >
-                  x
+                  X
                 </span>
               </div>
             </>
@@ -113,15 +117,16 @@ const AddTask = ({
             setShowTaskDate={setShowTaskDate}
           />
           <input
-            type="text"
             className="add-task__content"
+            aria-label="Enter your task"
             data-testid="add-task-content"
+            type="text"
             value={task}
             onChange={e => setTask(e.target.value)}
           />
           <button
-            className="add-task__submit"
             type="button"
+            className="add-task__submit"
             data-testid="add-task"
             onClick={() =>
               showQuickAddTask
@@ -139,12 +144,13 @@ const AddTask = ({
                 setShowMain(false)
                 setShowProjectOverlay(false)
               }}
-              onKeyPress={() => {
+              onKeyDown={() => {
                 setShowMain(false)
                 setShowProjectOverlay(false)
               }}
+              aria-label="Cancel adding a task"
+              tabIndex={0}
               role="button"
-              tabIndex="0"
             >
               Cancel
             </span>
@@ -153,9 +159,9 @@ const AddTask = ({
             className="add-task__project"
             data-testid="show-project-overlay"
             onClick={() => setShowProjectOverlay(!showProjectOverlay)}
-            onKeyPress={() => setShowProjectOverlay(!showProjectOverlay)}
+            onKeyDown={() => setShowProjectOverlay(!showProjectOverlay)}
+            tabIndex={0}
             role="button"
-            tabIndex="0"
           >
             <FaRegListAlt />
           </span>
@@ -163,9 +169,9 @@ const AddTask = ({
             className="add-task__date"
             data-testid="show-task-date-overlay"
             onClick={() => setShowTaskDate(!showTaskDate)}
-            onKeyPress={() => setShowTaskDate(!showTaskDate)}
+            onKeyDown={() => setShowTaskDate(!showTaskDate)}
+            tabIndex={0}
             role="button"
-            tabIndex="0"
           >
             <FaRegCalendarAlt />
           </span>
@@ -177,16 +183,9 @@ const AddTask = ({
 
 AddTask.propTypes = {
   showAddTaskMain: PropTypes.bool,
-  showShouldMain: PropTypes.bool,
+  shouldShowMain: PropTypes.bool,
   showQuickAddTask: PropTypes.bool,
   setShowQuickAddTask: PropTypes.func
-}
-
-AddTask.defaultProps = {
-  showAddTaskMain: true,
-  showShouldMain: false,
-  showQuickAddTask: false,
-  setShowQuickAddTask: () => {}
 }
 
 export default AddTask
