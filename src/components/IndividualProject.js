@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-prop-types */
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { FaTrashAlt } from 'react-icons/fa'
@@ -63,7 +62,12 @@ const IndividualProject = ({ project }) => {
 }
 
 IndividualProject.propTypes = {
-  project: PropTypes.object.isRequired
+  project: PropTypes.shape({
+    name: PropTypes.string,
+    projectId: PropTypes.string,
+    userId: PropTypes.string,
+    docId: PropTypes.string
+  }).isRequired
 }
 
 export default IndividualProject

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
@@ -18,22 +17,33 @@ const Projects = ({ activeValue = true }) => {
     },
     [setSelectedProject]
   )
-  return projects.map(project => (
-    <li
-      key={project.projectId}
-      data-doc-id={project.docId}
-      data-testid="project-action"
-      className={
-        active === project.projectId
-          ? 'active sidebar__project'
-          : 'sidebar__project'
-      }
-      onClick={() => handleClick(project)}
-      onKeyDown={() => handleClick(project)}
-    >
-      <IndividualProject project={project} />
-    </li>
-  ))
+  return (
+    projects &&
+    projects.map(project => (
+      <li
+        key={project.projectId}
+        data-testid="project-action-parent"
+        data-doc-id={project.docId}
+        className={
+          active === project.projectId
+            ? 'active sidebar__project'
+            : 'sidebar__project'
+        }
+      >
+        <div
+          role="button"
+          data-testid="project-action"
+          tabIndex={0}
+          aria-label={`Select ${project.name} as the task project`}
+          onClick={() => handleClick(project)}
+          onKeyDown={() => handleClick(project)}
+          className="sidebar__project-item"
+        >
+          <IndividualProject project={project} />
+        </div>
+      </li>
+    ))
+  )
 }
 
 Projects.propTypes = {
